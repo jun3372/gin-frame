@@ -1,0 +1,30 @@
+app:
+  addr: ""
+  port: 8080
+  mode: release
+  jwt_secret: Rtg8BPKNEf2mB4mgvKONGPZZQSaJWNLijxR42qRgq0iBb5
+
+database:
+  charset: utf8
+  dbname: test
+  host: "127.0.0.1"
+  link: ""
+  password: root
+  port: 3306
+  type: mysql
+  user: root
+  debug: true
+  engine: "InnoDB"
+
+logger:
+  name: "渣渣辉"
+  path: "./runtime/log"
+  level: ""
+  formatter: json
+  stdout: false
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: ''
+  db: 0
