@@ -30,7 +30,7 @@ func Logger() gin.HandlerFunc {
 		// 请求IP
 		clientIP := ctx.ClientIP()
 		// 添加参数
-		log.Log().WithFields(logrus.Fields{
+		log.WithFields(logrus.Fields{
 			"status_code":  statusCode,
 			"latency_time": latencyTime,
 			"client_ip":    clientIP,

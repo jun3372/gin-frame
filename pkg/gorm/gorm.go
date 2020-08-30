@@ -59,7 +59,7 @@ func InitDB() (err error) {
 	)
 
 	db, err = gorm.Open(t, link)
-	db.SetLogger(log.Log().Logger)
+	db.SetLogger(log.Logger)
 	db.LogMode(config.Debug)
 	return err
 }

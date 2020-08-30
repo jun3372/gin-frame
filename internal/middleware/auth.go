@@ -13,7 +13,7 @@ func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Parse the json web token.
 		ctx, err := token.ParseRequest(c)
-		log.Log().Infof("context is: %+v", ctx)
+		log.Infof("context is: %+v", ctx)
 
 		if err != nil {
 			response.Send(c, errno.ErrTokenInvalid, nil)

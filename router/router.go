@@ -19,7 +19,11 @@ func Load(router *gin.Engine, handlerFunc ...gin.HandlerFunc) {
 	// router.Static("/static", "./static")
 
 	// 认证相关路由
-	router.POST("/v1/register", user.Register)
+	v1 := router.Group("/v1")
+	{
+		v1.POST("/register", user.Register)
+		v1.POST("/login", user.Login)
+	}
 	// router.POST("/v1/login", user.Login)
 	// router.POST("/v1/login/phone", user.PhoneLogin)
 	// router.GET("/v1/vcode", user.VCode)

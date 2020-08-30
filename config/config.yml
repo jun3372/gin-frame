@@ -1,7 +1,7 @@
 app:
   addr: ""
   port: 8080
-  mode: release
+  mode: debug
   jwt_secret: Rtg8BPKNEf2mB4mgvKONGPZZQSaJWNLijxR42qRgq0iBb5
 
 database:

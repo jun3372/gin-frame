@@ -122,7 +122,7 @@ func newHook() (*lfshook.LfsHook, error) {
 	return lfsHook, err
 }
 
-func Log() *logrus.Entry {
+func GetLog() *logrus.Entry {
 	Once.Do(func() {
 		Init()
 	})

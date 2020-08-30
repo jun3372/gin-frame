@@ -65,7 +65,7 @@ func New() *Application {
 
 // Run start a app
 func (a *Application) Run() {
-	log.Log().Infof("Start to listening the incoming requests on http address: %s", cfg.Viper().GetString("app.addr"))
+	log.Infof("Start to listening the incoming requests on http address: %s", cfg.Viper().GetString("app.addr"))
 	srv := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", cfg.Viper().GetString("app.addr"), cfg.Viper().GetString("app.port")),
 		Handler: a.Router,
@@ -74,7 +74,7 @@ func (a *Application) Run() {
 	go func() {
 		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Log().Fatalf("listen: %s", err.Error())
+			log.Fatalf("listen: %s", err.Error())
 		}
 	}()
 
@@ -107,20 +107,20 @@ func gracefulStop(srv *http.Server) {
 	// kill -9 命令发送信号 syscall.SIGKILL
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	log.Log().Info("Shutdown Server ...")
+	log.Info("Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Log().Fatal("Server Shutdown:", err)
+		log.Fatal("Server Shutdown:", err)
 	}
 
 	// 5 秒后捕获 ctx.Done() 信号
 	select {
 	case <-ctx.Done():
-		log.Log().Info("timeout of 5 seconds.")
+		log.Info("timeout of 5 seconds.")
 	default:
 	}
 
-	log.Log().Info("Server exiting")
+	log.Info("Server exiting")
 }

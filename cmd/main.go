@@ -14,12 +14,13 @@ import (
 )
 
 func main() {
-
+	// 实例化应用
 	app := frame.New()
 
 	// 注册数据库迁移结构体
 	app.AutoMigrate(&muser.UserBaseModel{}, &muser.UserFansModel{}, &muser.UserFollowModel{})
 
+	// 加载更多路由
 	router.Load(app.Router)
 
 	// 注册路由

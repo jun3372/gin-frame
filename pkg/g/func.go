@@ -31,7 +31,7 @@ func DB() *gorm2.DB {
 func Log() *logrus.Entry {
 	_, file, line, _ := runtime.Caller(1)
 	caller := fmt.Sprintf("%s:%d", file, line)
-	return log.Log().WithField("caller", caller)
+	return log.GetLog().WithField("caller", caller)
 }
 
 func Config() *viper.Viper {
