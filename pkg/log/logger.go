@@ -14,7 +14,6 @@ import (
 
 	"frame/pkg/cfg"
 	"frame/pkg/empty"
-	"frame/pkg/g"
 )
 
 type Config struct {
@@ -43,7 +42,7 @@ func init() {
 }
 
 func InitConfig() {
-	if !g.IsEmpty(config) && !g.IsNil(config) {
+	if !empty.IsEmpty(config) && !empty.IsNil(config) {
 		return
 	}
 

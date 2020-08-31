@@ -18,7 +18,7 @@ func EmailLogin(ctx *gin.Context) {
 		req   LoginCredentials
 	)
 
-	if err = ctx.ShouldBindJSON(&req); err != nil {
+	if err = ctx.Bind(&req); err != nil {
 		response.Send(ctx, errno.ErrBind, nil)
 		return
 	}
@@ -43,7 +43,7 @@ func PhoneLogin(ctx *gin.Context) {
 	)
 
 	// 获取绑定参数
-	if err = ctx.ShouldBindJSON(&req); err != nil {
+	if err = ctx.Bind(&req); err != nil {
 		log.Debug("绑定参数错误", req)
 		response.Send(ctx, errno.ErrBind, nil)
 		return

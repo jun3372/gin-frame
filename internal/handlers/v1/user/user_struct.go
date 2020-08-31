@@ -22,6 +22,6 @@ type PhoneLoginCredentials struct {
 
 // UpdateRequest 更新请求
 type UpdateRequest struct {
-	Avatar string `json:"avatar"`
-	Sex    int    `json:"sex"`
+	Avatar string `json:"avatar" form:"avatar"`
+	Sex    int    `json:"sex" form:"sex"`
 }

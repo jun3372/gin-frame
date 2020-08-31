@@ -50,12 +50,15 @@ func New() *Application {
 		gin.SetMode(ModeDebug)
 	}
 
+	App.println()
+
 	// init router
 	App.Router = gin.Default()
 
 	// 全局中间件
-	App.Router.Use(middleware.Logger(), middleware.RequestID(), middleware.Options, gin.Recovery())
+	App.Router.Use(middleware.Logger(), middleware.RequestID(), middleware.Jaeger(), middleware.Options, gin.Recovery())
 
+	// 获取配置文件信息
 	if cfg.Viper().GetString("app.mode") == ModeDebug {
 		App.Debug = true
 	}
@@ -65,7 +68,7 @@ func New() *Application {
 
 // Run start a app
 func (a *Application) Run() {
-	log.Infof("Start to listening the incoming requests on http address: %s", cfg.Viper().GetString("app.addr"))
+	// log.Infof("Start to listening the incoming requests on http address: %s", cfg.Viper().GetString("app.addr"))
 	srv := &http.Server{
 		Addr:    fmt.Sprintf("%s:%s", cfg.Viper().GetString("app.addr"), cfg.Viper().GetString("app.port")),
 		Handler: a.Router,
@@ -95,6 +98,17 @@ func (a *Application) AddRouter(httpMethod, relativePath string, handlers ...gin
 // 注册数据库迁移结构体
 func (a *Application) AutoMigrate(m ...interface{}) {
 	gorm.GetDB().AutoMigrate(m...)
+}
+
+func (a *Application) println() {
+	fmt.Println("")
+	fmt.Println("|-----------------------------------|")
+	fmt.Println("|            go-gin-frame           |")
+	fmt.Println("|-----------------------------------|")
+	fmt.Println("|  Go Http Server Start Successful  |")
+	fmt.Println("|    Port: " + cfg.Viper().GetString("app.port") + "     Pid: " + fmt.Sprintf("%d", os.Getpid()) + "      |")
+	fmt.Println("|-----------------------------------|")
+	fmt.Println("")
 }
 
 // gracefulStop 优雅退出

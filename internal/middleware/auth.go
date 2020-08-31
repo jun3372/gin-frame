@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/cast"
 
 	"frame/pkg/errno"
 	"frame/pkg/log"
@@ -22,7 +23,7 @@ func Auth() gin.HandlerFunc {
 		}
 
 		// set uid to context
-		c.Set(response.GetUserKey(), ctx.UserID)
+		c.Set(response.GetUserIdKey(), cast.ToInt64(ctx.UserID))
 		c.Next()
 	}
 }

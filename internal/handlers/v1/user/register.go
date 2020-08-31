@@ -3,7 +3,7 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 
-	s_user "frame/internal/services/user"
+	suser "frame/internal/services/user"
 	"frame/pkg/errno"
 	"frame/pkg/g"
 	"frame/pkg/log"
@@ -33,7 +33,7 @@ func Register(ctx *gin.Context) {
 	}
 
 	// 执行注册
-	if err := s_user.Svc.Register(ctx, req.Username, req.Email, req.Password); err != nil {
+	if err := suser.Svc.Register(ctx, req.Username, req.Email, req.Password); err != nil {
 		response.Send(ctx, errno.ErrRegisterFailed, nil)
 		return
 	}

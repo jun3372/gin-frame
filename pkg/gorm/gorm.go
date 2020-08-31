@@ -14,7 +14,6 @@ import (
 
 	"frame/pkg/cfg"
 	"frame/pkg/empty"
-	"frame/pkg/g"
 )
 
 type Config struct {
@@ -38,7 +37,7 @@ var (
 
 // 初始化数据库配置
 func InitConfig() (*Config, error) {
-	if !g.IsEmpty(config) && !g.IsNil(config) {
+	if !empty.IsEmpty(config) && !empty.IsNil(config) {
 		return config, nil
 	}
 

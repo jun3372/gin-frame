@@ -1,4 +1,5 @@
 app:
+  name: "xxoo"
   addr: ""
   port: 8080
   mode: debug
@@ -26,5 +27,10 @@ logger:
 redis:
   host: 127.0.0.1
   port: 6379
-  password: ''
+  password: ""
   db: 0
+
+jaeger:
+  open: false
+  host: 127.0.0.1
+  port: 6831

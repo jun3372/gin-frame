@@ -2,13 +2,19 @@ package user
 
 import (
 	"encoding/json"
+	"fmt"
+	"time"
 
+	"github.com/jinzhu/gorm"
 	"github.com/pkg/errors"
 	"github.com/spf13/cast"
 
+	"frame/internal/cache/user"
 	muser "frame/internal/models/user"
+	"frame/pkg/errno"
 	"frame/pkg/g"
 	"frame/pkg/log"
+	"frame/pkg/redis"
 )
 
 // BaseRepo 定义用户仓库接口
@@ -23,15 +29,64 @@ type BaseRepo interface {
 
 // userRepo 用户仓库
 type userRepo struct {
-	// userCache *user.Cache
+	userCache *user.Cache
 }
 
 func (repo *userRepo) Update(id uint64, userMap g.Map) error {
-	return g.DB().Model(muser.UserBaseModel{ID: id}).Updates(userMap).Error
+	user, err := repo.GetUserByID(id)
+	if err != nil {
+		return err
+	}
+
+	if g.IsEmpty(user) || user.ID < 1 {
+		return errno.ErrUserNotFound
+	}
+
+	// 删除缓存
+	if err := repo.userCache.DelUserBaseCache(id); err != nil {
+		return err
+	}
+
+	return g.DB().Model(user).Updates(userMap).Error
 }
 
 func (repo *userRepo) GetUserByID(id uint64) (*muser.UserBaseModel, error) {
-	panic("implement me")
+	userModel, err := repo.userCache.GetUserBaseCache(id)
+	if err == nil && !g.IsEmpty(userModel) && userModel.ID > 0 {
+		return userModel, nil
+	}
+
+	// 加锁，防止缓存击穿
+	key := fmt.Sprintf("uid:%d", id)
+	lock := redis.NewLock(g.Redis(), key, 3*time.Second)
+	token := lock.GenToken()
+	isLock, err := lock.Lock(token)
+	if err != nil || !isLock {
+		return nil, errors.Wrap(err, "[user_repo] lock err")
+	}
+
+	// 解除锁定
+	defer func() {
+		_ = lock.Unlock(token)
+	}()
+
+	data := muser.UserBaseModel{}
+	if isLock {
+		// 从数据库中获取
+		err = g.DB().Where("`id` = ?", id).First(&data).Error
+		log.Debug("err=", err)
+		if err != nil && err != gorm.ErrRecordNotFound {
+			return nil, errors.Wrap(err, "[user_repo] get user data err")
+		}
+
+		// 写入cache
+		err = repo.userCache.SetUserBaseCache(id, &data)
+		if err != nil {
+			return &data, errors.Wrap(err, "[user_repo] set user data err")
+		}
+	}
+
+	return &data, nil
 }
 
 func (repo *userRepo) GetUsersByIds(ids []uint64) ([]*muser.UserBaseModel, error) {
@@ -63,7 +118,7 @@ func (repo *userRepo) GetUserByPhone(phone int) (*muser.UserBaseModel, error) {
 // GetUserByEmail 根据邮箱获取手机号
 func (repo *userRepo) GetUserByEmail(phone string) (*muser.UserBaseModel, error) {
 	user := muser.UserBaseModel{}
-	err := g.DB().Where("email = ?", phone).First(&user).Error
+	err := g.DB().Where("phone = ?", phone).First(&user).Error
 	if err != nil {
 		return nil, errors.Wrap(err, "[user_repo] get user err by email")
 	}
@@ -73,5 +128,5 @@ func (repo *userRepo) GetUserByEmail(phone string) (*muser.UserBaseModel, error)
 
 // NewUserRepo 实例化用户仓库
 func NewUserRepo() BaseRepo {
-	return &userRepo{}
+	return &userRepo{userCache: user.NewUserCache()}
 }

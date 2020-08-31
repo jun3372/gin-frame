@@ -7,7 +7,7 @@ import (
 	"github.com/go-redis/redis/v8"
 
 	"frame/pkg/cfg"
-	"frame/pkg/g"
+	"frame/pkg/empty"
 )
 
 var (
@@ -32,7 +32,7 @@ func Init() {
 }
 
 func InitConfig() {
-	if !g.IsEmpty(config) && !g.IsNil(config) {
+	if !empty.IsEmpty(config) && !empty.IsNil(config) {
 		return
 	}
 

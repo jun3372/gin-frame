@@ -30,7 +30,7 @@ func Load(router *gin.Engine, handlerFunc ...gin.HandlerFunc) {
 		u := v1.Group("/users")
 		u.Use(middleware.Auth())
 		{
-			u.PUT("/:id", user.Update)
+			u.PUT("/", user.Update)
 			// u.POST("/follow", user.Follow)
 			// u.GET("/:id/following", user.FollowList)
 			// u.GET("/:id/followers", user.FollowerList)
