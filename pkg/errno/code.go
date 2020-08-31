@@ -15,10 +15,10 @@ var (
 	ErrInvalidTransaction = &Errno{Code: 20004, Message: "invalid transaction."}
 
 	// user errors
-	ErrEncrypt               = &Errno{Code: 20101, Message: "Error occurred while encrypting the user password."}
-	ErrUserNotFound          = &Errno{Code: 20102, Message: "The user was not found."}
-	ErrTokenInvalid          = &Errno{Code: 20103, Message: "The token was invalid."}
-	ErrPasswordIncorrect     = &Errno{Code: 20104, Message: "The password was incorrect."} // 密码不正确。
+	ErrEncrypt               = &Errno{Code: 20101, Message: "加密用户密码时出错"}
+	ErrUserNotFound          = &Errno{Code: 20102, Message: "用户不存在"}
+	ErrTokenInvalid          = &Errno{Code: 20103, Message: "无效的token"}
+	ErrPasswordIncorrect     = &Errno{Code: 20104, Message: "密码不正确"} // 密码不正确。
 	ErrAreaCodeEmpty         = &Errno{Code: 20105, Message: "手机区号不能为空"}
 	ErrPhoneEmpty            = &Errno{Code: 20106, Message: "手机号不能为空"}
 	ErrGenVCode              = &Errno{Code: 20107, Message: "生成验证码错误"}

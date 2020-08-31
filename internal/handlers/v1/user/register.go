@@ -6,12 +6,13 @@ import (
 	s_user "frame/internal/services/user"
 	"frame/pkg/errno"
 	"frame/pkg/g"
+	"frame/pkg/log"
 	"frame/pkg/response"
 )
 
 func Register(ctx *gin.Context) {
 	var req RegisterRequest
-	if err := ctx.ShouldBindJSON(&req); err != nil {
+	if err := ctx.Bind(&req); err != nil {
 		g.Log().Errorf("register bind param err: %v", err)
 		response.Send(ctx, errno.ErrBind, nil)
 		ctx.Abort()
@@ -23,6 +24,7 @@ func Register(ctx *gin.Context) {
 		response.Send(ctx, errno.ErrParam, nil)
 		return
 	}
+	log.Debug("email=", req.Email)
 
 	// 验证重复密码
 	if req.Password != req.ConfirmPassword {
@@ -31,7 +33,7 @@ func Register(ctx *gin.Context) {
 	}
 
 	// 执行注册
-	if err := s_user.Svc.Register(ctx, req.Username, req.Password, req.Email); err != nil {
+	if err := s_user.Svc.Register(ctx, req.Username, req.Email, req.Password); err != nil {
 		response.Send(ctx, errno.ErrRegisterFailed, nil)
 		return
 	}

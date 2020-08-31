@@ -158,9 +158,9 @@ func sprintlnn(args ...interface{}) string {
 }
 
 func WithFields(fields logrus.Fields) *logrus.Entry {
-	return GetLog().WithFields(fields)
+	return log().WithFields(fields)
 }
 
 func WithField(key string, value interface{}) *logrus.Entry {
-	return GetLog().WithField(key, value)
+	return log().WithField(key, value)
 }

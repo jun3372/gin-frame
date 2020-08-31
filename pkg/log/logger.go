@@ -14,6 +14,7 @@ import (
 
 	"frame/pkg/cfg"
 	"frame/pkg/empty"
+	"frame/pkg/g"
 )
 
 type Config struct {
@@ -31,6 +32,10 @@ var (
 	Logger *logrus.Logger
 )
 
+func SetConfig(c *Config) {
+	config = c
+}
+
 func init() {
 	if empty.IsEmpty(Logger) || empty.IsNil(Logger) {
 		Logger = logrus.New()
@@ -38,6 +43,10 @@ func init() {
 }
 
 func InitConfig() {
+	if !g.IsEmpty(config) && !g.IsNil(config) {
+		return
+	}
+
 	if err := cfg.Viper().UnmarshalKey("logger", &config); err != nil {
 		panic(fmt.Errorf("初始化日志配置错误 err: %v", err))
 	}

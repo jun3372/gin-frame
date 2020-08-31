@@ -1,18 +1,22 @@
 package user
 
 import (
+	"encoding/json"
+
 	"github.com/pkg/errors"
+	"github.com/spf13/cast"
 
 	muser "frame/internal/models/user"
 	"frame/pkg/g"
+	"frame/pkg/log"
 )
 
 // BaseRepo 定义用户仓库接口
 type BaseRepo interface {
 	Create(user muser.UserBaseModel) (id uint64, err error)
-	// Update(db *gorm.DB, id uint64, userMap map[string]interface{}) error
-	// GetUserByID(db *gorm.DB, id uint64) (*muser.UserBaseModel, error)
-	// GetUsersByIds(db *gorm.DB, ids []uint64) ([]*muser.UserBaseModel, error)
+	Update(id uint64, userMap g.Map) error
+	GetUserByID(id uint64) (*muser.UserBaseModel, error)
+	GetUsersByIds(ids []uint64) ([]*muser.UserBaseModel, error)
 	GetUserByPhone(phone int) (*muser.UserBaseModel, error)
 	GetUserByEmail(email string) (*muser.UserBaseModel, error)
 }
@@ -22,15 +26,23 @@ type userRepo struct {
 	// userCache *user.Cache
 }
 
-// NewUserRepo 实例化用户仓库
-func NewUserRepo() BaseRepo {
-	return &userRepo{}
+func (repo *userRepo) Update(id uint64, userMap g.Map) error {
+	return g.DB().Model(muser.UserBaseModel{ID: id}).Updates(userMap).Error
+}
+
+func (repo *userRepo) GetUserByID(id uint64) (*muser.UserBaseModel, error) {
+	panic("implement me")
+}
+
+func (repo *userRepo) GetUsersByIds(ids []uint64) ([]*muser.UserBaseModel, error) {
+	panic("implement me")
 }
 
 // Create 创建用户
 func (repo *userRepo) Create(user muser.UserBaseModel) (id uint64, err error) {
-	err = g.DB().Create(&user).Error
-	if err != nil {
+	j, _ := json.Marshal(user)
+	log.Debug("user=", cast.ToString(j))
+	if err = g.DB().Create(&user).Error; err != nil {
 		return 0, errors.Wrap(err, "[user_repo] create user err")
 	}
 
@@ -57,4 +69,9 @@ func (repo *userRepo) GetUserByEmail(phone string) (*muser.UserBaseModel, error)
 	}
 
 	return &user, nil
+}
+
+// NewUserRepo 实例化用户仓库
+func NewUserRepo() BaseRepo {
+	return &userRepo{}
 }

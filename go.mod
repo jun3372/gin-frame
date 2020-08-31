@@ -17,7 +17,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/sirupsen/logrus v1.6.0
-	github.com/spf13/cast v1.3.1 // indirect
+	github.com/spf13/cast v1.3.1
 	github.com/spf13/viper v1.7.1
 	github.com/tebeka/strftime v0.1.5 // indirect
 	github.com/teris-io/shortid v0.0.0-20171029131806-771a37caa5cf

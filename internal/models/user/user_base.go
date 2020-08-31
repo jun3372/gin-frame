@@ -12,9 +12,9 @@ import (
 // UserBaseModel User represents a registered user.
 type UserBaseModel struct {
 	ID        uint64    `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"id"`
-	Username  string    `json:"username" gorm:"column:username;unique;not null" binding:"required" validate:"min=1,max=32"`
+	Username  string    `json:"username" gorm:"column:username;not null" binding:"required" validate:"min=1,max=32"`
 	Password  string    `json:"password" gorm:"column:password;not null" binding:"required" validate:"min=5,max=128"`
-	Phone     int       `gorm:"column:phone" json:"phone"`
+	Phone     int64     `gorm:"column:phone" json:"phone"`
 	Email     string    `gorm:"column:email;unique" json:"email"`
 	Avatar    string    `gorm:"column:avatar" json:"avatar"`
 	Sex       int       `gorm:"column:sex" json:"sex"`

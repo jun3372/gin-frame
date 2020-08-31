@@ -18,3 +18,10 @@ type PhoneLoginCredentials struct {
 	Phone      int `json:"phone" form:"phone" binding:"required" example:"13010002000"`
 	VerifyCode int `json:"verify_code" form:"verify_code" binding:"required" example:"120110"`
 }
+
+
+// UpdateRequest 更新请求
+type UpdateRequest struct {
+	Avatar string `json:"avatar"`
+	Sex    int    `json:"sex"`
+}

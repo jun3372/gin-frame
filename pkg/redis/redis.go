@@ -7,6 +7,7 @@ import (
 	"github.com/go-redis/redis/v8"
 
 	"frame/pkg/cfg"
+	"frame/pkg/g"
 )
 
 var (
@@ -31,9 +32,17 @@ func Init() {
 }
 
 func InitConfig() {
+	if !g.IsEmpty(config) && !g.IsNil(config) {
+		return
+	}
+
 	if err := cfg.Viper().UnmarshalKey("redis", &config); err != nil {
 		panic(fmt.Errorf("初始化Redis配置错误 err: %v", err))
 	}
+}
+
+func SetConfig(c *Config) {
+	config = c
 }
 
 func Redis() *redis.Client {

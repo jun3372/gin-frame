@@ -14,7 +14,7 @@ import (
 
 	"frame/pkg/cfg"
 	"frame/pkg/empty"
-	"frame/pkg/log"
+	"frame/pkg/g"
 )
 
 type Config struct {
@@ -38,11 +38,19 @@ var (
 
 // 初始化数据库配置
 func InitConfig() (*Config, error) {
+	if !g.IsEmpty(config) && !g.IsNil(config) {
+		return config, nil
+	}
+
 	if err := cfg.Viper().UnmarshalKey("database", &config); err != nil {
 		return config, err
 	}
 
 	return config, nil
+}
+
+func SetConfig(c *Config) {
+	config = c
 }
 
 // 初始化数据库链接
@@ -59,7 +67,7 @@ func InitDB() (err error) {
 	)
 
 	db, err = gorm.Open(t, link)
-	db.SetLogger(log.Logger)
+	// db.SetLogger(log.Logger)
 	db.LogMode(config.Debug)
 	return err
 }

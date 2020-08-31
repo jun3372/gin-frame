@@ -7,12 +7,27 @@ import (
 	"frame/internal/repository/user"
 	"frame/pkg/auth"
 	"frame/pkg/errno"
+	"frame/pkg/g"
 	"frame/pkg/token"
 )
 
 type Service interface {
 	Register(ctx *gin.Context, username, email, password string) error
 	EmailLogin(ctx *gin.Context, email, password string) (tokenStr string, err error)
+	PhoneLogin(ctx *gin.Context, phone, verifyCode int) (tokenStr string, err error)
+	GetUserByID(id uint64) (*muser.UserBaseModel, error)
+	GetUserInfoByID(id uint64) (*muser.UserInfo, error)
+	GetUserByPhone(phone int) (*muser.UserBaseModel, error)
+	GetUserByEmail(email string) (*muser.UserBaseModel, error)
+	UpdateUser(id uint64, userMap g.Map) error
+	BatchGetUsers(userID uint64, userIDs []uint64) ([]*muser.UserInfo, error)
+
+	// 关注
+	IsFollowedUser(userID uint64, followedUID uint64) bool
+	AddUserFollow(userID uint64, followedUID uint64) error
+	CancelUserFollow(userID uint64, followedUID uint64) error
+	GetFollowingUserList(userID uint64, lastID uint64, limit int) ([]*muser.UserFollowModel, error)
+	GetFollowerUserList(userID uint64, lastID uint64, limit int) ([]*muser.UserFansModel, error)
 }
 
 type userService struct {
@@ -37,10 +52,7 @@ func (srv *userService) Register(ctx *gin.Context, username, email, password str
 	model := muser.UserBaseModel{
 		Username: username,
 		Password: pwd,
-		Phone:    0,
 		Email:    email,
-		Avatar:   "",
-		Sex:      0,
 	}
 
 	_, err = srv.userRepo.Create(model)
@@ -66,4 +78,66 @@ func (srv *userService) EmailLogin(ctx *gin.Context, email, password string) (to
 	}, "")
 
 	return
+}
+
+func (srv *userService) PhoneLogin(ctx *gin.Context, phone, verifyCode int) (tokenStr string, err error) {
+	// TODO:: 验证码手机验证码
+
+	// 获取用户信息
+	user, err := srv.userRepo.GetUserByPhone(phone)
+	if err != nil {
+		return
+	}
+
+	// 签名
+	tokenStr, err = token.Sign(ctx, token.Context{UserID: user.ID, Username: user.Username}, "")
+	return
+}
+
+func (srv *userService) GetUserByID(id uint64) (*muser.UserBaseModel, error) {
+	panic("implement me")
+}
+
+func (srv *userService) GetUserInfoByID(id uint64) (*muser.UserInfo, error) {
+	panic("implement me")
+}
+
+func (srv *userService) GetUserByPhone(phone int) (*muser.UserBaseModel, error) {
+	panic("implement me")
+}
+
+func (srv *userService) GetUserByEmail(email string) (*muser.UserBaseModel, error) {
+	panic("implement me")
+}
+
+func (srv *userService) UpdateUser(id uint64, userMap g.Map) error {
+	if err:=  srv.userRepo.Update(id, userMap);err!=nil{
+		return err
+	}
+
+	return nil
+}
+
+func (srv *userService) BatchGetUsers(userID uint64, userIDs []uint64) ([]*muser.UserInfo, error) {
+	panic("implement me")
+}
+
+func (srv *userService) IsFollowedUser(userID uint64, followedUID uint64) bool {
+	panic("implement me")
+}
+
+func (srv *userService) AddUserFollow(userID uint64, followedUID uint64) error {
+	panic("implement me")
+}
+
+func (srv *userService) CancelUserFollow(userID uint64, followedUID uint64) error {
+	panic("implement me")
+}
+
+func (srv *userService) GetFollowingUserList(userID uint64, lastID uint64, limit int) ([]*muser.UserFollowModel, error) {
+	panic("implement me")
+}
+
+func (srv *userService) GetFollowerUserList(userID uint64, lastID uint64, limit int) ([]*muser.UserFansModel, error) {
+	panic("implement me")
 }
