@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"frame/pkg/empty"
+	"gin-frame/pkg/empty"
 )
 
 var (

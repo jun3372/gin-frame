@@ -12,8 +12,8 @@ import (
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
 
-	"frame/pkg/cfg"
-	"frame/pkg/empty"
+	"gin-frame/pkg/cfg"
+	"gin-frame/pkg/empty"
 )
 
 type Config struct {

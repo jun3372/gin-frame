@@ -5,12 +5,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"frame/internal/middleware"
-	muser "frame/internal/models/user"
-	"frame/pkg/errno"
-	"frame/pkg/frame"
-	"frame/pkg/response"
-	"frame/router"
+	"gin-frame/internal/middleware"
+	// muser "gin-frame/internal/models/user"
+	"gin-frame/pkg/errno"
+	"gin-frame/pkg/frame"
+	"gin-frame/pkg/response"
+	"gin-frame/router"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	app := frame.New()
 
 	// 注册数据库迁移结构体
-	app.AutoMigrate(&muser.UserBaseModel{}, &muser.UserFansModel{}, &muser.UserFollowModel{})
+	// app.AutoMigrate(&muser.UserBaseModel{}, &muser.UserFansModel{}, &muser.UserFollowModel{})
 
 	// 加载更多路由
 	router.Load(app.Router)

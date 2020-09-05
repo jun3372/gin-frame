@@ -3,7 +3,7 @@ package log
 import (
 	"testing"
 
-	"frame/pkg/cfg"
+	"gin-frame/pkg/cfg"
 )
 
 var (

@@ -4,10 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
 
-	"frame/pkg/errno"
-	"frame/pkg/log"
-	"frame/pkg/response"
-	"frame/pkg/token"
+	"gin-frame/pkg/errno"
+	"gin-frame/pkg/log"
+	"gin-frame/pkg/response"
+	"gin-frame/pkg/token"
 )
 
 func Auth() gin.HandlerFunc {

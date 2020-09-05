@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 
-	"frame/pkg/util"
+	"gin-frame/pkg/util"
 )
 
 const (

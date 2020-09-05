@@ -1,4 +1,4 @@
-module frame
+module gin-frame
 
 go 1.14
 

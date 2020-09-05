@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 
-	"frame/pkg/auth"
+	"gin-frame/pkg/auth"
 )
 
 // UserBaseModel User represents a registered user.
