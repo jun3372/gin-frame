@@ -3,12 +3,12 @@ package s_user
 import (
 	"github.com/gin-gonic/gin"
 
-	muser "frame/internal/models/user"
-	"frame/internal/repository/user"
-	"frame/pkg/auth"
-	"frame/pkg/errno"
-	"frame/pkg/g"
-	"frame/pkg/token"
+	muser "github.com/jun3372/gin-frame/internal/models/user"
+	"github.com/jun3372/gin-frame/internal/repository/user"
+	"github.com/jun3372/gin-frame/pkg/auth"
+	"github.com/jun3372/gin-frame/pkg/errno"
+	"github.com/jun3372/gin-frame/pkg/g"
+	"github.com/jun3372/gin-frame/pkg/token"
 )
 
 type Service interface {

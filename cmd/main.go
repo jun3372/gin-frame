@@ -5,12 +5,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"frame/internal/middleware"
-	// muser "frame/internal/models/user"
-	"frame/pkg/errno"
-	"frame/pkg/frame"
-	"frame/pkg/response"
-	"frame/router"
+	"github.com/jun3372/gin-frame/internal/middleware"
+	// muser "github.com/jun3372/gin-frame/internal/models/user"
+	"github.com/jun3372/gin-frame/pkg/errno"
+	"github.com/jun3372/gin-frame/pkg/frame"
+	"github.com/jun3372/gin-frame/pkg/response"
+	"github.com/jun3372/gin-frame/router"
 )
 
 func main() {

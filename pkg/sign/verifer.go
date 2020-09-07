@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"frame/pkg/util"
+	"github.com/jun3372/gin-frame/pkg/util"
 )
 
 // Verifier define struct

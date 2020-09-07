@@ -7,8 +7,8 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 
-	"frame/pkg/cfg"
-	"frame/pkg/jaeger"
+	"github.com/jun3372/gin-frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/jaeger"
 )
 
 func Jaeger() func(c *gin.Context) {

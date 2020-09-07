@@ -3,7 +3,7 @@ package gorm
 import (
 	"testing"
 
-	"frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/cfg"
 )
 
 func TestInitDB(t *testing.T) {

@@ -12,10 +12,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"frame/internal/middleware"
-	"frame/pkg/cfg"
-	"frame/pkg/gorm"
-	"frame/pkg/log"
+	"github.com/jun3372/gin-frame/internal/middleware"
+	"github.com/jun3372/gin-frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/gorm"
+	"github.com/jun3372/gin-frame/pkg/log"
 )
 
 const (

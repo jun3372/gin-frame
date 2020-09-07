@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"frame/pkg/errno"
+	"github.com/jun3372/gin-frame/pkg/errno"
 )
 
 // Response api的返回结构体

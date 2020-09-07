@@ -8,8 +8,8 @@ import (
 	"github.com/go-redis/redis/v8"
 	"github.com/spf13/cast"
 
-	"frame/pkg/cfg"
-	"frame/pkg/log"
+	"github.com/jun3372/gin-frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/log"
 )
 
 var (

@@ -3,11 +3,11 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 
-	suser "frame/internal/services/user"
-	"frame/pkg/errno"
-	"frame/pkg/g"
-	"frame/pkg/log"
-	"frame/pkg/response"
+	suser "github.com/jun3372/gin-frame/internal/services/user"
+	"github.com/jun3372/gin-frame/pkg/errno"
+	"github.com/jun3372/gin-frame/pkg/g"
+	"github.com/jun3372/gin-frame/pkg/log"
+	"github.com/jun3372/gin-frame/pkg/response"
 )
 
 func Register(ctx *gin.Context) {

@@ -9,11 +9,11 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 
-	"frame/pkg/cfg"
-	"frame/pkg/empty"
-	"frame/pkg/gorm"
-	"frame/pkg/log"
-	"frame/pkg/redis"
+	"github.com/jun3372/gin-frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/empty"
+	"github.com/jun3372/gin-frame/pkg/gorm"
+	"github.com/jun3372/gin-frame/pkg/log"
+	"github.com/jun3372/gin-frame/pkg/redis"
 )
 
 func IsNil(value interface{}) bool {

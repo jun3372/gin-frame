@@ -1,4 +1,4 @@
-module frame
+module github.com/jun3372/gin-frame
 
 go 1.14
 

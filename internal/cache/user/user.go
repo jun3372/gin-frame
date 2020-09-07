@@ -11,8 +11,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cast"
 
-	muser "frame/internal/models/user"
-	redis2 "frame/pkg/redis"
+	muser "github.com/jun3372/gin-frame/internal/models/user"
+	redis2 "github.com/jun3372/gin-frame/pkg/redis"
 )
 
 const (

@@ -3,9 +3,9 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 
-	"frame/internal/handlers/v1/user"
-	"frame/internal/middleware"
-	"frame/pkg/response"
+	"github.com/jun3372/gin-frame/internal/handlers/v1/user"
+	"github.com/jun3372/gin-frame/internal/middleware"
+	"github.com/jun3372/gin-frame/pkg/response"
 )
 
 func Load(router *gin.Engine, handlerFunc ...gin.HandlerFunc) {

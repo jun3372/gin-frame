@@ -6,9 +6,9 @@ import (
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 
-	"frame/pkg/cfg"
-	"frame/pkg/gorm"
-	"frame/pkg/log"
+	"github.com/jun3372/gin-frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/gorm"
+	"github.com/jun3372/gin-frame/pkg/log"
 )
 
 func InitCfg(file string) error {

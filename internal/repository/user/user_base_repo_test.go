@@ -3,7 +3,7 @@ package user
 import (
 	"testing"
 
-	"frame/pkg/cfg"
+	"github.com/jun3372/gin-frame/pkg/cfg"
 )
 
 var (
