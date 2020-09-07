@@ -4,10 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
 
-	suser "gin-frame/internal/services/user"
-	"gin-frame/pkg/errno"
-	"gin-frame/pkg/g"
-	"gin-frame/pkg/response"
+	suser "frame/internal/services/user"
+	"frame/pkg/errno"
+	"frame/pkg/g"
+	"frame/pkg/response"
 )
 
 func Update(ctx *gin.Context) {

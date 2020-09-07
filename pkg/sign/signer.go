@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gin-frame/pkg/util"
+	"frame/pkg/util"
 )
 
 // CryptoFunc 签名加密函数

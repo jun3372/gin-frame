@@ -12,8 +12,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 
-	"gin-frame/pkg/cfg"
-	"gin-frame/pkg/empty"
+	"frame/pkg/cfg"
+	"frame/pkg/empty"
 )
 
 type Config struct {

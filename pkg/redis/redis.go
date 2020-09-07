@@ -6,8 +6,8 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
-	"gin-frame/pkg/cfg"
-	"gin-frame/pkg/empty"
+	"frame/pkg/cfg"
+	"frame/pkg/empty"
 )
 
 var (

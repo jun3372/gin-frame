@@ -9,12 +9,12 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cast"
 
-	"gin-frame/internal/cache/user"
-	muser "gin-frame/internal/models/user"
-	"gin-frame/pkg/errno"
-	"gin-frame/pkg/g"
-	"gin-frame/pkg/log"
-	"gin-frame/pkg/redis"
+	"frame/internal/cache/user"
+	muser "frame/internal/models/user"
+	"frame/pkg/errno"
+	"frame/pkg/g"
+	"frame/pkg/log"
+	"frame/pkg/redis"
 )
 
 // BaseRepo 定义用户仓库接口

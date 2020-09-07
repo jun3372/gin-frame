@@ -3,12 +3,12 @@ package user
 import (
 	"github.com/gin-gonic/gin"
 
-	muser "gin-frame/internal/models/user"
-	suser "gin-frame/internal/services/user"
-	"gin-frame/pkg/errno"
-	"gin-frame/pkg/g"
-	"gin-frame/pkg/log"
-	"gin-frame/pkg/response"
+	muser "frame/internal/models/user"
+	suser "frame/internal/services/user"
+	"frame/pkg/errno"
+	"frame/pkg/g"
+	"frame/pkg/log"
+	"frame/pkg/response"
 )
 
 func EmailLogin(ctx *gin.Context) {

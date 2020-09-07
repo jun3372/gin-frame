@@ -10,7 +10,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 
-	"gin-frame/pkg/cfg"
+	"frame/pkg/cfg"
 )
 
 var (

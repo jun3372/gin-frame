@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"gin-frame/pkg/errno"
-	"gin-frame/pkg/response"
-	"gin-frame/pkg/sign"
+	"frame/pkg/errno"
+	"frame/pkg/response"
+	"frame/pkg/sign"
 )
 
 // SignMd5Middleware md5 签名校验中间件
