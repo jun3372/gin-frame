@@ -17,7 +17,7 @@ type Response struct {
 }
 
 // SendResponse 返回json
-func Send(c *gin.Context, err error, data interface{}) {
+func Send(c *gin.Context, err errno.Errno, data interface{}) {
 	code, message := errno.DecodeErr(err)
 
 	// always return http.StatusOK
